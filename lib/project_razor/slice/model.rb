@@ -71,7 +71,7 @@ module ProjectRazor
         # Validate our args are here
         raise ProjectRazor::Error::Slice::MissingArgument, "Must Provide A Model Template [template]" unless validate_arg(template)
         raise ProjectRazor::Error::Slice::MissingArgument, "Must Provide A Model Label [label]" unless validate_arg(label)
-        raise ProjectRazor::Error::Slice::MissingArgument, "Must Provide A Image UUID [image_uuid]" unless validate_arg(image_uuid)
+#        raise ProjectRazor::Error::Slice::MissingArgument, "Must Provide A Image UUID [image_uuid]" unless validate_arg(image_uuid)
         model = verify_template(template)
         raise ProjectRazor::Error::Slice::InvalidModelTemplate, "Invalid Model Template [#{template}] " unless model
         image = model.image_prefix ? verify_image(model, image_uuid) : true
@@ -92,7 +92,8 @@ module ProjectRazor
       end
 
       def verify_template(template_name)
-        get_child_templates(ProjectRazor::ModelTemplate).each { |template| return template if template.name == template_name }
+        templates = get_child_templates(ProjectRazor::ModelTemplate)
+	templates.each { |template| return template if template.name == template_name }
         nil
       end
 

@@ -6,7 +6,8 @@ module ProjectRazor
   module ModelTemplate
     # Root Model object
     # @abstract
-    class Netboot < ProjectRazor::ModelTemplate::Base
+    class NetbootBase
+      class Base < ProjectRazor::ModelTemplate::Base
       include(ProjectRazor::Logging)
 
       # Compatible Image Prefix
@@ -240,4 +241,5 @@ module ProjectRazor
       end
     end
   end
+end
 end
